@@ -1,13 +1,13 @@
 # Digital Twin Exploration Lab
 
-Digital Twin Exploration Lab is a public portfolio and learning repository for browser-based industrial simulation prototypes. It currently includes **FactoryTwin 3D**, an interactive manufacturing digital twin MVP, and **PointCloud Lab**, a lightweight 3D sensing and inspection-data explorer.
+Digital Twin Exploration Lab is a public portfolio and learning repository for browser-based industrial simulation prototypes. It currently includes **FactoryTwin 3D**, an interactive manufacturing digital twin MVP, and **PointCloud Lab**, a browser-based 3D computer vision and spatial-data explorer.
 
 ## Roadmap
 
 | Project | Status | Purpose |
 | --- | --- | --- |
 | FactoryTwin 3D | Available | 3D manufacturing line, simulated sensor monitoring, machine controls, faults, CSV replay, and what-if analysis. |
-| PointCloud Lab | Available | Point-cloud visualization, synthetic surface inspection, anomaly exploration, and XYZ/CSV import. |
+| PointCloud Lab | Available | Point-cloud generation, transforms, segmentation, voxel filtering, side-by-side comparison, and XYZ/CSV import/export. |
 | FactoryTwin Advanced | Coming soon | Larger factory simulation with richer line behavior and maintenance scenarios. |
 | ProductionFlow Simulator | Coming soon | Throughput, queues, buffers, and line-balancing experiments. |
 | MachineHealth AI | Coming soon | Predictive maintenance concepts using synthetic sensor data. |
@@ -48,13 +48,14 @@ The simulation is intentionally lightweight and deterministic. It is educational
 
 PointCloud Lab demonstrates a 3D sensing and inspection-data layer with:
 
-- Procedural point clouds for an inspection panel, process pipe, turbine blade section, and bearing race.
-- Adjustable point count, sensor noise, anomaly strength, point size, and color mode.
-- Height, deviation, and intensity coloring.
-- Simple orbit/zoom camera controls.
-- XYZ/CSV import with `x,y,z,intensity` style values.
-- Sample CSV export for experimenting with point-cloud files.
-- Scan metrics including point count, anomaly count, dimensions, height range, and RMS deviation.
+- Procedural datasets for cube, cylinder, sphere, machine-like assembly, and warehouse shelf scenes.
+- Orbit, zoom, grid, axes, camera reset, point-cloud, wireframe, and solid preview modes.
+- Adjustable point count, density, sensor noise, point size, color mode, voxel size, clipping range, and segmentation plane.
+- Translation, rotation, and scale controls with a live 4x4 homogeneous transform matrix.
+- Side-by-side original versus processed views.
+- Bounding box, centroid, dimensions, nearest-neighbor sample, and cluster-count metrics.
+- XYZ/CSV import validation and processed CSV export.
+- PNG scene export and in-app guided experiments.
 
 PointCloud Lab uses synthetic geometry and optional user-imported text files. It is not a validated metrology, LiDAR, CT, or industrial inspection system.
 
@@ -102,7 +103,7 @@ The workflow at `.github/workflows/deploy-pages.yml`:
 1. Checks out the repository.
 2. Sets up Node.js.
 3. Installs FactoryTwin and PointCloud Lab dependencies with `npm ci`.
-4. Runs FactoryTwin tests.
+4. Runs FactoryTwin and PointCloud Lab tests.
 5. Builds FactoryTwin with `VITE_BASE_PATH=/digital-twin-exploration-lab/factorytwin/`.
 6. Builds PointCloud Lab with `VITE_BASE_PATH=/digital-twin-exploration-lab/pointcloud/`.
 7. Builds the portal and copies both apps into the static site output.

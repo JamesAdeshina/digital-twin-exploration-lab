@@ -6,7 +6,7 @@
   "scripts": {
     "install:factorytwin": "npm --prefix apps/factorytwin-3d install",
     "install:pointcloud": "npm --prefix apps/pointcloud-lab install",
-    "test": "npm --prefix apps/factorytwin-3d run test",
+    "test": "npm --prefix apps/factorytwin-3d run test && npm --prefix apps/pointcloud-lab run test",
     "build:factorytwin": "node scripts/build-factorytwin.mjs",
     "build:pointcloud": "node scripts/build-pointcloud.mjs",
     "build:site": "node scripts/build-site.mjs",
