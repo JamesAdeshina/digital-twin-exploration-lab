@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #090d13;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.panel {
+  overflow: auto;
+  border: 1px solid rgb(30 41 59);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(16, 22, 31, 0.96), rgba(9, 13, 19, 0.96));
+  padding: 12px;
+}
+
+.section-title {
+  margin-bottom: 8px;
+  color: rgb(148 163 184);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.command {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 38px;
+  border: 1px solid rgb(51 65 85);
+  border-radius: 6px;
+  background: rgb(15 23 42);
+  padding: 8px 10px;
+  color: rgb(226 232 240);
+  font-size: 13px;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease,
+    transform 150ms ease;
+}
+
+.command:hover {
+  border-color: rgb(57 198 214);
+  background: rgba(57, 198, 214, 0.1);
+}
+
+.command:active {
+  transform: translateY(1px);
+}
+
+.chip {
+  min-height: 34px;
+  border: 1px solid rgb(51 65 85);
+  border-radius: 6px;
+  background: rgb(15 23 42);
+  padding: 7px 10px;
+  color: rgb(203 213 225);
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.chip-active {
+  border-color: rgb(57 198 214);
+  background: rgb(57 198 214);
+  color: rgb(2 6 23);
+  font-weight: 700;
+}

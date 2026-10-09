@@ -1,0 +1,14 @@
+{
+  "name": "digital-twin-exploration-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "install:factorytwin": "npm --prefix apps/factorytwin-3d install",
+    "test": "npm --prefix apps/factorytwin-3d run test",
+    "build:factorytwin": "node scripts/build-factorytwin.mjs",
+    "build:site": "node scripts/build-site.mjs",
+    "build": "npm run test && npm run build:factorytwin && npm run build:site",
+    "dev:factorytwin": "npm --prefix apps/factorytwin-3d run dev"
+  }
+}
