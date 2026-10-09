@@ -26,11 +26,17 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: apps/factorytwin-3d/package-lock.json
+          cache-dependency-path: |
+            apps/factorytwin-3d/package-lock.json
+            apps/pointcloud-lab/package-lock.json
 
       - name: Install FactoryTwin dependencies
         run: npm ci
         working-directory: apps/factorytwin-3d
+
+      - name: Install PointCloud Lab dependencies
+        run: npm ci
+        working-directory: apps/pointcloud-lab
 
       - name: Run tests
         run: npm run test
@@ -41,6 +47,12 @@ jobs:
         working-directory: apps/factorytwin-3d
         env:
           VITE_BASE_PATH: /digital-twin-exploration-lab/factorytwin/
+
+      - name: Build PointCloud Lab
+        run: npm run build
+        working-directory: apps/pointcloud-lab
+        env:
+          VITE_BASE_PATH: /digital-twin-exploration-lab/pointcloud/
 
       - name: Build portal
         run: node scripts/build-site.mjs

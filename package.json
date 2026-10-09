@@ -5,10 +5,13 @@
   "type": "module",
   "scripts": {
     "install:factorytwin": "npm --prefix apps/factorytwin-3d install",
+    "install:pointcloud": "npm --prefix apps/pointcloud-lab install",
     "test": "npm --prefix apps/factorytwin-3d run test",
     "build:factorytwin": "node scripts/build-factorytwin.mjs",
+    "build:pointcloud": "node scripts/build-pointcloud.mjs",
     "build:site": "node scripts/build-site.mjs",
-    "build": "npm run test && npm run build:factorytwin && npm run build:site",
-    "dev:factorytwin": "npm --prefix apps/factorytwin-3d run dev"
+    "build": "npm run test && npm run build:factorytwin && npm run build:pointcloud && npm run build:site",
+    "dev:factorytwin": "npm --prefix apps/factorytwin-3d run dev",
+    "dev:pointcloud": "npm --prefix apps/pointcloud-lab run dev"
   }
 }
