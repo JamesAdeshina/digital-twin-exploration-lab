@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  background: #090d13;
+  color: #d8e2ef;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: #090d13;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+@layer components {
+  .panel {
+    @apply rounded-lg border border-slate-700/80 bg-panel/95 p-4;
+  }
+
+  .section-title {
+    @apply mb-3 text-xs font-extrabold uppercase tracking-[0.18em] text-cyanline;
+  }
+
+  .metric {
+    @apply rounded-md border border-slate-700 bg-slate-950/60 p-3;
+  }
+
+  .metric-label {
+    @apply text-[10px] font-extrabold uppercase tracking-[0.14em] text-slate-400;
+  }
+
+  .metric-value {
+    @apply mt-1 block text-lg font-black text-slate-100;
+  }
+
+  .command {
+    @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-sm font-bold text-slate-100 transition hover:border-cyanline hover:bg-cyanline/10;
+  }
+
+  .command-primary {
+    @apply border-cyanline bg-cyanline text-slate-950 hover:bg-cyanline/80;
+  }
+
+  .input {
+    @apply w-full rounded-md border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100;
+  }
+
+  .range {
+    @apply w-full accent-cyanline;
+  }
+}

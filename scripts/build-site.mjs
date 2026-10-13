@@ -9,6 +9,7 @@ const portal = path.join(root, "portal");
 const docs = path.join(root, "docs");
 const factoryDist = path.join(root, "apps", "factorytwin-3d", "dist");
 const pointcloudDist = path.join(root, "apps", "pointcloud-lab", "dist");
+const productionflowDist = path.join(root, "apps", "productionflow-simulator", "dist");
 const repository = process.env.GITHUB_REPOSITORY ?? "OWNER/digital-twin-exploration-lab";
 
 if (!existsSync(factoryDist)) {
@@ -19,6 +20,10 @@ if (!existsSync(pointcloudDist)) {
   throw new Error("PointCloud Lab build output was not found. Run npm run build:pointcloud first.");
 }
 
+if (!existsSync(productionflowDist)) {
+  throw new Error("ProductionFlow build output was not found. Run npm run build:productionflow first.");
+}
+
 await rm(dist, { recursive: true, force: true });
 await mkdir(dist, { recursive: true });
 await cp(portal, dist, { recursive: true });
@@ -27,6 +32,8 @@ await mkdir(path.join(dist, "factorytwin"), { recursive: true });
 await cp(factoryDist, path.join(dist, "factorytwin"), { recursive: true });
 await mkdir(path.join(dist, "pointcloud"), { recursive: true });
 await cp(pointcloudDist, path.join(dist, "pointcloud"), { recursive: true });
+await mkdir(path.join(dist, "productionflow"), { recursive: true });
+await cp(productionflowDist, path.join(dist, "productionflow"), { recursive: true });
 await cp(path.join(portal, "index.html"), path.join(dist, "404.html"));
 
 for (const file of [path.join(dist, "index.html"), path.join(dist, "404.html")]) {

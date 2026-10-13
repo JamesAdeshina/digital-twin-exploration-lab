@@ -1,6 +1,6 @@
 # Digital Twin Exploration Lab
 
-Digital Twin Exploration Lab is a public portfolio and learning repository for browser-based industrial simulation prototypes. It currently includes **FactoryTwin 3D**, an interactive manufacturing digital twin MVP, and **PointCloud Lab**, a browser-based 3D computer vision and spatial-data explorer.
+Digital Twin Exploration Lab is a public portfolio and learning repository for browser-based industrial simulation prototypes. It currently includes **FactoryTwin 3D**, **PointCloud Lab**, and **ProductionFlow Simulator**.
 
 ## Roadmap
 
@@ -8,8 +8,8 @@ Digital Twin Exploration Lab is a public portfolio and learning repository for b
 | --- | --- | --- |
 | FactoryTwin 3D | Available | 3D manufacturing line, simulated sensor monitoring, machine controls, faults, CSV replay, and what-if analysis. |
 | PointCloud Lab | Available | Point-cloud generation, transforms, segmentation, voxel filtering, side-by-side comparison, and XYZ/CSV import/export. |
+| ProductionFlow Simulator | Available | Discrete-event operations modelling for queues, buffers, capacity, downtime, bottlenecks, and replicated scenarios. |
 | FactoryTwin Advanced | Coming soon | Larger factory simulation with richer line behavior and maintenance scenarios. |
-| ProductionFlow Simulator | Coming soon | Throughput, queues, buffers, and line-balancing experiments. |
 | MachineHealth AI | Coming soon | Predictive maintenance concepts using synthetic sensor data. |
 
 ## Current Structure
@@ -18,7 +18,8 @@ Digital Twin Exploration Lab is a public portfolio and learning repository for b
 digital-twin-exploration-lab/
 ├── apps/
 │   ├── factorytwin-3d/
-│   └── pointcloud-lab/
+│   ├── pointcloud-lab/
+│   └── productionflow-simulator/
 ├── portal/
 ├── docs/
 ├── datasets/
@@ -59,6 +60,21 @@ PointCloud Lab demonstrates a 3D sensing and inspection-data layer with:
 
 PointCloud Lab uses synthetic geometry and optional user-imported text files. It is not a validated metrology, LiDAR, CT, or industrial inspection system.
 
+## ProductionFlow Simulator
+
+ProductionFlow Simulator demonstrates discrete-event operations modelling with:
+
+- Three-stage Cutting, Assembly, and Inspection flow.
+- FIFO queues, finite buffers, station capacity, blocking, starvation, and WIP.
+- Stochastic arrivals, service-time variation, seeded reproducibility, defect/rework loops, and optional downtime/repair events.
+- Start, pause, reset, next-event stepping, fixed-duration runs, seed control, and display-speed control.
+- Live top-down queue visualisation driven by engine state.
+- Dashboard metrics for throughput per simulated hour, average lead time, WIP, utilisation, blocked time, starved time, completed jobs, and defect estimate.
+- Bottleneck detection using a transparent utilisation-plus-queue heuristic.
+- Baseline-vs-scenario comparison with 12 seeded replications and JSON/CSV exports.
+
+ProductionFlow is an educational simulation with assumed distributions. It is not calibrated to a real factory and should not be used for production planning without validation.
+
 ## Local Setup
 
 Install app dependencies:
@@ -66,6 +82,7 @@ Install app dependencies:
 ```powershell
 npm --prefix apps/factorytwin-3d install
 npm --prefix apps/pointcloud-lab install
+npm --prefix apps/productionflow-simulator install
 ```
 
 Run FactoryTwin locally:
@@ -82,6 +99,12 @@ Run PointCloud Lab locally:
 npm run dev:pointcloud
 ```
 
+Run ProductionFlow Simulator locally:
+
+```powershell
+npm run dev:productionflow
+```
+
 Run tests:
 
 ```powershell
@@ -94,7 +117,7 @@ Build the complete static site:
 npm run build
 ```
 
-The complete GitHub Pages artifact is emitted to `dist/`, with the portal at the root, FactoryTwin under `dist/factorytwin/`, and PointCloud Lab under `dist/pointcloud/`.
+The complete GitHub Pages artifact is emitted to `dist/`, with the portal at the root, FactoryTwin under `dist/factorytwin/`, PointCloud Lab under `dist/pointcloud/`, and ProductionFlow under `dist/productionflow/`.
 
 ## GitHub Pages Deployment
 
@@ -102,19 +125,21 @@ The workflow at `.github/workflows/deploy-pages.yml`:
 
 1. Checks out the repository.
 2. Sets up Node.js.
-3. Installs FactoryTwin and PointCloud Lab dependencies with `npm ci`.
-4. Runs FactoryTwin and PointCloud Lab tests.
+3. Installs FactoryTwin, PointCloud Lab, and ProductionFlow dependencies with `npm ci`.
+4. Runs FactoryTwin, PointCloud Lab, and ProductionFlow tests.
 5. Builds FactoryTwin with `VITE_BASE_PATH=/digital-twin-exploration-lab/factorytwin/`.
 6. Builds PointCloud Lab with `VITE_BASE_PATH=/digital-twin-exploration-lab/pointcloud/`.
-7. Builds the portal and copies both apps into the static site output.
-8. Uploads `dist/` as the GitHub Pages artifact.
-9. Deploys using GitHub's official Pages actions.
+7. Builds ProductionFlow with `VITE_BASE_PATH=/digital-twin-exploration-lab/productionflow/`.
+8. Builds the portal and copies all apps into the static site output.
+9. Uploads `dist/` as the GitHub Pages artifact.
+10. Deploys using GitHub's official Pages actions.
 
 Expected public URLs after deployment:
 
 - Lab portal: `https://<github-username>.github.io/digital-twin-exploration-lab/`
 - FactoryTwin 3D: `https://<github-username>.github.io/digital-twin-exploration-lab/factorytwin/`
 - PointCloud Lab: `https://<github-username>.github.io/digital-twin-exploration-lab/pointcloud/`
+- ProductionFlow Simulator: `https://<github-username>.github.io/digital-twin-exploration-lab/productionflow/`
 
 The exact username should be confirmed from the deployed repository owner.
 
@@ -124,8 +149,9 @@ The exact username should be confirmed from the deployed repository owner.
 - No paid hosting or external APIs.
 - All sensor readings are simulated.
 - Synthetic point-cloud data is generated from procedural points, not LiDAR, CT, metrology, or CAD data.
+- ProductionFlow uses assumed probability distributions and seeded synthetic events, not calibrated plant data.
 - The current app is a learning prototype and should not be used for real machine diagnostics.
 
 ## Recommended Next Step
 
-Build **FactoryTwin Advanced** as the third app under `apps/factorytwin-advanced/`, then expose it through the portal route `/factorytwin-advanced/` without changing the existing FactoryTwin or PointCloud routes.
+Build **FactoryTwin Advanced** as the fourth app under `apps/factorytwin-advanced/`, then expose it through the portal route `/factorytwin-advanced/` without changing the existing FactoryTwin, PointCloud, or ProductionFlow routes.

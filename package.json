@@ -6,12 +6,15 @@
   "scripts": {
     "install:factorytwin": "npm --prefix apps/factorytwin-3d install",
     "install:pointcloud": "npm --prefix apps/pointcloud-lab install",
-    "test": "npm --prefix apps/factorytwin-3d run test && npm --prefix apps/pointcloud-lab run test",
+    "install:productionflow": "npm --prefix apps/productionflow-simulator install",
+    "test": "npm --prefix apps/factorytwin-3d run test && npm --prefix apps/pointcloud-lab run test && npm --prefix apps/productionflow-simulator run test",
     "build:factorytwin": "node scripts/build-factorytwin.mjs",
     "build:pointcloud": "node scripts/build-pointcloud.mjs",
+    "build:productionflow": "node scripts/build-productionflow.mjs",
     "build:site": "node scripts/build-site.mjs",
-    "build": "npm run test && npm run build:factorytwin && npm run build:pointcloud && npm run build:site",
+    "build": "npm run test && npm run build:factorytwin && npm run build:pointcloud && npm run build:productionflow && npm run build:site",
     "dev:factorytwin": "npm --prefix apps/factorytwin-3d run dev",
-    "dev:pointcloud": "npm --prefix apps/pointcloud-lab run dev"
+    "dev:pointcloud": "npm --prefix apps/pointcloud-lab run dev",
+    "dev:productionflow": "npm --prefix apps/productionflow-simulator run dev"
   }
 }
